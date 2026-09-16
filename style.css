@@ -110,3 +110,9 @@ canvas {
   color: #888;
   font-size: 13px;
 }
+#poolCanvas {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  touch-action: none; /* Desativa gestos padrão do navegador no canvas */
+}
