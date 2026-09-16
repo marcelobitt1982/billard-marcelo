@@ -304,25 +304,41 @@ function resolveCollisions() {
   }
 }
 
-// CONTROLES DO JOGADOR MARCELO
+// CONTROLES DO JOGADOR MARCELO (SUPORTE A MOUSE E TOUCH)
 const mouse = { x: 0, y: 0, isDragging: false };
 let power = 0;
 
-canvas.addEventListener("mousemove", (e) => {
+function updatePosition(e) {
   const rect = canvas.getBoundingClientRect();
-  mouse.x = e.clientX - rect.left;
-  mouse.y = e.clientY - rect.top;
-});
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  
+  // Escala a posição do toque para acompanhar o tamanho real do canvas
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
 
-canvas.addEventListener("mousedown", (e) => {
-  if (e.button === 0 && areBallsStopped() && currentTurn === "player" && !whiteBall.inPocket && !gameOver && !isShotInProgess) {
+  mouse.x = (clientX - rect.left) * scaleX;
+  mouse.y = (clientY - rect.top) * scaleY;
+}
+
+function handleStart(e) {
+  if (areBallsStopped() && currentTurn === "player" && !whiteBall.inPocket && !gameOver && !isShotInProgess) {
     mouse.isDragging = true;
     power = 0;
+    updatePosition(e);
   }
-});
+}
 
-canvas.addEventListener("mouseup", (e) => {
-  if (e.button === 0 && mouse.isDragging && currentTurn === "player") {
+function handleMove(e) {
+  if (mouse.isDragging) {
+    updatePosition(e);
+    // Impede a tela do celular de rolar enquanto joga
+    if (e.touches) e.preventDefault(); 
+  }
+}
+
+function handleEnd(e) {
+  if (mouse.isDragging && currentTurn === "player") {
     mouse.isDragging = false;
     isShotInProgess = true;
     const angle = Math.atan2(mouse.y - whiteBall.y, mouse.x - whiteBall.x);
@@ -330,7 +346,17 @@ canvas.addEventListener("mouseup", (e) => {
     whiteBall.vx = -Math.cos(angle) * force;
     whiteBall.vy = -Math.sin(angle) * force;
   }
-});
+}
+
+// Eventos de Mouse
+canvas.addEventListener("mousemove", updatePosition);
+canvas.addEventListener("mousedown", handleStart);
+canvas.addEventListener("mouseup", handleEnd);
+
+// Eventos de Touch (Celular/Tablet)
+canvas.addEventListener("touchstart", handleStart, { passive: false });
+canvas.addEventListener("touchmove", handleMove, { passive: false });
+canvas.addEventListener("touchend", handleEnd);
 
 // IA FILTRA AS BOLAS CORRETAS
 function playAiTurn() {
