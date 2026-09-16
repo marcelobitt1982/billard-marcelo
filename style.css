@@ -1,26 +1,13 @@
-* {
-  box-sizing: border-box;
-  touch-action: none;
-}
-
 body {
-  background: radial-gradient(circle, #051c93 0%, #08020f 100%);
+  background-color: #121212;
   color: #ffffff;
-  font-family: 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  height: 100vh;
   margin: 0;
-  overflow: hidden;
-}
-
-#game-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
 }
 
 #ui {
@@ -30,45 +17,39 @@ body {
 
 h1 {
   margin: 0;
-  color: #00f3ff;
+  color: #4caf50;
   font-size: 26px;
-  letter-spacing: 3px;
-  text-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff;
+  letter-spacing: 2px;
 }
 
 #turn-display {
-  font-size: 15px;
+  font-size: 16px;
   margin-top: 4px;
-  color: #aaa;
 }
 
 #turn-name {
-  color: #ffe600;
-  text-shadow: 0 0 8px #ffe600;
+  color: #ffca28;
 }
 
 canvas {
-  border: 4px solid #00f3ff;
-  border-radius: 12px;
-  box-shadow: 0 0 20px #00f3ff, inset 0 0 15px rgba(5, 101, 106, 0.3);
-  max-width: 95vw;
-  max-height: 60vh;
-  background-color: #19b02d;
+  border: 12px solid #5c3a21;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+  cursor: crosshair;
 }
 
-/* PAINEL INFERIOR NEON */
+/* PAINEL INFERIOR */
 #score-board {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 95vw;
-  max-width: 800px;
-  background: rgba(5, 10, 31, 0.8);
-  border: 1px solid #086b8c;
-  box-shadow: 0 0 12px rgba(6, 162, 253, 0.4);
-  border-radius: 10px;
-  margin-top: 12px;
-  padding: 8px 20px;
+  width: 800px;
+  background-color: #1e1e1e;
+  border: 2px solid #333;
+  border-radius: 8px;
+  margin-top: 10px;
+  padding: 10px 20px;
+  box-sizing: border-box;
 }
 
 .player-box {
@@ -79,28 +60,27 @@ canvas {
 }
 
 .player-box h3 {
-  margin: 0 0 6px 0;
-  font-size: 15px;
-  color: #fbff02;
-  text-shadow: 0 0 5px #ffea02;
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  color: #ddd;
 }
 
 .vs-divider {
   font-weight: bold;
-  color: #00f3ff;
+  color: #888;
   font-size: 18px;
-  text-shadow: 0 0 8px #00f3ff;
 }
 
 .ball-container {
   display: flex;
   gap: 6px;
-  min-height: 24px;
+  min-height: 26px;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
 }
 
+/* ESTILO DAS BOLA POCKETED */
 .mini-ball {
   width: 22px;
   height: 22px;
@@ -111,8 +91,8 @@ canvas {
   font-size: 10px;
   font-weight: bold;
   color: #000;
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0,0,0,0.5);
+  box-shadow: inset -2px -2px 4px rgba(0,0,0,0.4);
 }
 
 .mini-ball-num {
@@ -125,25 +105,8 @@ canvas {
   justify-content: center;
 }
 
-/* AVISO DE TELA NA VERTICAL */
-#rotate-device-warning {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-  font-size: 18px;
-  color: #00f3ff;
-  text-shadow: 0 0 10px #00f3ff;
-}
-
-.phone-icon {
-  font-size: 48px;
-  margin-bottom: 10px;
-}
-
-@media screen and (orientation: portrait) {
-  #game-container { display: none; }
-  #rotate-device-warning { display: flex; }
+.controls {
+  margin-top: 10px;
+  color: #888;
+  font-size: 13px;
 }
