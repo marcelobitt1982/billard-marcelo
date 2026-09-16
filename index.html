@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billard Marcelo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="ui">
+    <h1>BILLARD MARCELO</h1>
+    <p id="turn-display">Vez de: <strong id="turn-name">Você</strong></p>
+  </div>
+
+  <canvas id="poolCanvas" width="800" height="400"></canvas>
+
+  <!-- PAINEL DE BOLAS ENCAÇAPADAS -->
+  <div id="score-board">
+    <div class="player-box">
+      <h3>Marcelo</h3>
+      <div id="marcelo-balls" class="ball-container"></div>
+    </div>
+    
+    <div class="vs-divider">VS</div>
+
+    <div class="player-box">
+      <h3>IA (Computador)</h3>
+      <div id="ai-balls" class="ball-container"></div>
+    </div>
+  </div>
+
+  <p class="controls">Controles: <strong>Mova o mouse</strong> para mirar | <strong>Clique e segure</strong> para a força | <strong>Solte</strong> para dar a tacada</p>
+
+  <script src="game.js"></script>
+</body>
+</html>
